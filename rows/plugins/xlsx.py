@@ -74,7 +74,6 @@ def validate_cell_value(cell_obj):
     For some reason the openpyxl is not recognizing boolean type.
     It returns True or False but as string.
     """
-    #TODO: Check if all cases of xlsx types are treated
     if cell_obj.value == u"=TRUE()":
         result = True
     elif cell_obj.value == u"=FALSE()":
@@ -95,10 +94,9 @@ def correct_field_types(cell_obj, current_field_type):
     """
     Make some correctios to export
     """
-    #TODO: compare xlsx type with rows field types
     if current_field_type is fields.PercentField:
         cell_obj.number_format = "0.00%"
     elif current_field_type is fields.DatetimeField:
         cell_obj.value = str(cell_obj.value).split(" 00:00:00")[0]
-        cell_obj.number_format = "YYYY/MM/DD"
+        cell_obj.number_format.lower() = "yyyy/mm/dd"
     return cell_obj
