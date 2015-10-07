@@ -98,5 +98,5 @@ def correct_field_types(cell_obj, current_field_type):
         cell_obj.number_format = "0.00%"
     elif current_field_type is fields.DatetimeField:
         cell_obj.value = str(cell_obj.value).split(" 00:00:00")[0]
-        cell_obj.number_format.lower() = "yyyy/mm/dd"
+        cell_obj.number_format = "yyyy/mm/dd"
     return cell_obj
