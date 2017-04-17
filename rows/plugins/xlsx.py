@@ -23,7 +23,9 @@ def _read_row(sheet, row_index, last_column):
 def cell_to_python(cell):
     '''Convert a PyOpenXL's `Cell` object to the corresponding Python object'''
 
-    if cell.value == u"=TRUE()":
+    if cell.value is None:
+        return ''
+    elif cell.value == u"=TRUE()":
         return True
     elif cell.value == u"=FALSE()":
         return False
@@ -33,15 +35,13 @@ def cell_to_python(cell):
         return str(cell.value)
     elif cell.number_format.endswith("%"):
         return "{}%".format(cell.value * 100)
-    elif cell.value is None:
-        return ''
     else:
         return cell.value
 
 
 def import_from_xlsx(filename_or_fobj, sheet_name=None, sheet_index=0,
                      start_row=0, start_column=0, *args, **kwargs):
-    workbook = load_workbook(filename_or_fobj)
+    workbook = load_workbook(filename_or_fobj, read_only=True, data_only=True)
     if sheet_name is None:
         sheet_name = workbook.sheetnames[sheet_index]
     sheet = workbook.get_sheet_by_name(sheet_name)
