@@ -2,9 +2,6 @@
 
 from __future__ import unicode_literals
 
-import datetime
-import decimal
-
 from io import BytesIO
 
 from openpyxl import load_workbook, Workbook
