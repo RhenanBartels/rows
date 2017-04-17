@@ -41,7 +41,7 @@ def cell_to_python(cell):
 
 def import_from_xlsx(filename_or_fobj, sheet_name=None, sheet_index=0,
                      start_row=0, start_column=0, *args, **kwargs):
-    workbook = load_workbook(filename_or_fobj, read_only=True, data_only=True)
+    workbook = load_workbook(filename_or_fobj, read_only=True)
     if sheet_name is None:
         sheet_name = workbook.sheetnames[sheet_index]
     sheet = workbook.get_sheet_by_name(sheet_name)
