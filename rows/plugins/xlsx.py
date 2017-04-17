@@ -117,5 +117,3 @@ def export_to_xlsx(table, filename_or_fobj=None, sheet_name='Sheet1', *args,
         result = fobj.read()
         fobj.close()
         return result
-
-
